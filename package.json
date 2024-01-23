@@ -1,6 +1,6 @@
 {
   "name": "electron-autoupdate-demo",
-  "version": "1.0.1",
+  "version": "0.0.2",
   "description": "This is electron autoupdate demo",
   "main": "main.js",
   "scripts": {
@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "electron-updater": "^6.1.7"
+  },
   "devDependencies": {
     "electron": "^28.1.4",
     "electron-builder": "^24.9.1",
