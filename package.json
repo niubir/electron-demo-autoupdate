@@ -1,0 +1,90 @@
+{
+  "name": "electron-autoupdate-demo",
+  "version": "1.0.1",
+  "description": "This is electron autoupdate demo",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --exec electron . --ext .json,.js,.css,.html",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.1.4",
+    "electron-builder": "^24.9.1",
+    "electron-updater": "^6.1.7",
+    "nodemon": "^3.0.3"
+  },
+  "build": {
+    "appId": "com.zyytest.demo.autoupdate.electron",
+    "productName": "electron-autoupdate-demo",
+    "artifactName": "electron-autoupdate-demo-setup-${os}-${arch}-v${version}.${ext}",
+    "copyright": "This is electron demo",
+    "extraResources": [
+      "static/**"
+    ],
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    },
+    "win": {
+      "publish": [
+        {
+          "provider": "generic",
+          "url": "http://localhost:20001/update/windows"
+        }
+      ],
+      "requestedExecutionLevel": "highestAvailable",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "sign": false,
+      "contents": [
+        {
+          "x": 300,
+          "y": 130,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 70,
+          "y": 130,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "x": 400,
+        "y": 200,
+        "width": 405,
+        "height": 300
+      }
+    },
+    "mac": {
+      "publish": [
+        {
+          "provider": "generic",
+          "url": "http://localhost:20001/update/macos"
+        }
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "target": {
+        "target": "dmg",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      }
+    }
+  }
+}
