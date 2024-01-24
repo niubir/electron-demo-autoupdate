@@ -1,6 +1,6 @@
 {
   "name": "electron-autoupdate-demo",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "This is electron autoupdate demo",
   "main": "main.js",
   "scripts": {
