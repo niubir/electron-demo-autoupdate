@@ -6,6 +6,12 @@ const { ipcHandler } = require('./ipc')
 const mainWindowPreloadFile = staticPathJoin('preload.js')
 const mainWindowLoadFile = staticPathJoin('index.html')
 
+Object.defineProperty(app, 'isPackaged', {
+  get() {
+    return true
+  }
+})
+
 const initIPC = () => {
   ipcHandler('Version', () => {
     return {

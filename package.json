@@ -36,7 +36,7 @@
       "publish": [
         {
           "provider": "generic",
-          "url": "http://localhost:20001/update/windows"
+          "url": "http://localhost:20001/update/win32"
         }
       ],
       "requestedExecutionLevel": "highestAvailable",
@@ -76,7 +76,7 @@
       "publish": [
         {
           "provider": "generic",
-          "url": "http://localhost:20001/update/macos"
+          "url": "http://localhost:20001/update/darwin"
         }
       ],
       "hardenedRuntime": true,
