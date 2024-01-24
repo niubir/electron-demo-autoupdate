@@ -1,0 +1,6 @@
+*.exe
+*.exe.blockmap
+*.dmg
+latest.yml
+win32/*
+darwin/*

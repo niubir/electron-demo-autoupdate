@@ -1,0 +1,130 @@
+<script src="./vue.global.js"></script>
+
+<div id="app">
+  <div class="info">
+    <div class="local">
+      <p>本地版本:</p>
+      <p>{{ local }}</p>
+    </div>
+    <div class="server">
+      <p>最新版本:</p>
+      <p>{{ server }}</p>
+    </div>
+  </div>
+  <div class="operate">
+    <button :disabled="updateBtnDisabled" @click="update">{{ updateBtnTxt }}</button>
+  </div>
+</div>
+
+<script setup>
+  const { createApp, ref, computed } = Vue
+  createApp({
+    setup() {
+      const version = ref({})
+      const updating = ref(false)
+
+      const local = computed(()=>{
+        if ('local' in version.value) {
+          return version.value.local
+        }
+        return '加载中...'
+      })
+
+      const server = computed(()=>{
+        if ('server' in version.value) {
+          return version.value.server
+        }
+        return '加载中...'
+      })
+
+      const updateBtnDisabled = computed(()=>{
+        if (updating.value) {
+          return true
+        }
+        if ('isLatest' in version.value) {
+          return version.value.isLatest
+        }
+        return true
+      })
+
+      const updateBtnTxt = computed(()=>{
+        if ('isLatest' in version.value) {
+          if (version.value.isLatest) {
+            return '无需更新'
+          }
+          if (version.value.isForce) {
+            if (updating.value) {
+              return '强制更新中...'
+            } else {
+              return '强制更新'
+            }
+          } else {
+            if (updating.value) {
+              return '普通更新中...'
+            } else {
+              return '普通更新'
+            }
+          }
+        }
+        return '加载中...'
+      })
+
+      const update = () => {
+        if (updating.value) {
+          return
+        }
+
+        updating.value = true
+        // DO update
+      }
+
+      // window.api.Version().then(data=>{
+      //   version.value = data
+      // }).catch(err=>{
+      //   alert(err)
+      // })
+      // window.api.VersionUpdated((data)=>{
+      //   version.value = data
+      // })
+
+      return {
+        local,
+        server,
+        updateBtnDisabled,
+        updateBtnTxt,
+      }
+    }
+  }).mount('#app')
+</script>
+
+<style>
+  #app {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .plan {
+    /* width: 50%; */
+    box-sizing: border-box;
+    padding: 10px 40px;
+    border-radius: 10px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .plan .line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .plan .line .name::after {
+    content: ":";
+  }
+
+
+</style>

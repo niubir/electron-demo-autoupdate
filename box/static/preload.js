@@ -2,7 +2,9 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('api', {
   Version: () => invoke('Version'),
-  UpdateMessageListen: (cb) => on('UpdateMessageListen', cb),
+  VersionDownload: () => invoke('VersionDownload'),
+  ListenVersion: (cb) => on('ListenVersion', cb),
+  ListenVersionDownloadProgress: (cb) => on('ListenVersionDownloadProgress', cb),
 })
 
 const on = (chan, cb) => {

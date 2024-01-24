@@ -14,7 +14,13 @@ const staticPathJoin = (...args) => {
   return path.join(dir, ...args)
 }
 
+const nodeModulesPathJoin = (...args) => {
+  const dir = path.join(__dirname, 'node_modules')
+  return path.join(dir, ...args)
+}
+
 module.exports = {
   isProduction,
   staticPathJoin,
+  nodeModulesPathJoin,
 }

@@ -33,12 +33,6 @@
       "oneClick": false
     },
     "win": {
-      "publish": [
-        {
-          "provider": "generic",
-          "url": "http://localhost:20001/update/win32"
-        }
-      ],
       "requestedExecutionLevel": "highestAvailable",
       "target": [
         {
@@ -73,12 +67,6 @@
       }
     },
     "mac": {
-      "publish": [
-        {
-          "provider": "generic",
-          "url": "http://localhost:20001/update/darwin"
-        }
-      ],
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "target": {
@@ -88,6 +76,12 @@
           "arm64"
         ]
       }
-    }
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://localhost:20001/update"
+      }
+    ]
   }
 }
